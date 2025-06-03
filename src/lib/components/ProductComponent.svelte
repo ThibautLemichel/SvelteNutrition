@@ -23,7 +23,7 @@
 	// When the user clicks on +
 	function onPlusClick(event: MouseEvent) {
 		event.stopPropagation();
-		if(energy === undefined) {
+		if (energy === undefined) {
 			dispatch('add', { id, name, quantity, energy, meal_type });
 		}
 	}
@@ -32,7 +32,6 @@
 <div
 	class="product-component relative cursor-pointer shadow-md"
 	style="background: {colors[colorIndex]}"
-
 	on:click={onContainerClick}
 >
 	<h2 class="text-1xl text-left font-bold">{name}</h2>
@@ -55,7 +54,7 @@
 		on:click={onPlusClick}
 		aria-label="Add this product to diary"
 	>
-		<img src={plusUrl} alt="Plus" style="width: 35px; padding: 4px;"/>
+		<img src={plusUrl} alt="Plus" style="width: 35px; padding: 4px;" />
 	</div>
 </div>
 
@@ -65,22 +64,42 @@
 		padding: 1rem;
 		border-radius: 8px;
 		margin-bottom: 1rem;
+		position: relative;
+		overflow: hidden;
+	}
+	.product-component::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: url('/line/Line_1.svg'), url('/line/Line_2.svg');
+		background-repeat: no-repeat, no-repeat;
+		background-position:
+			bottom left,
+			right;
+		background-size:
+			60% auto,
+			60% auto;
+		opacity: 0.5;
+		pointer-events: none;
 	}
 	h2 {
 		margin: 0 0 0.5rem 0;
-		  color: var(--color-white);
+		color: var(--color-white);
 	}
 	.plus {
-border-radius: 50%;
-fill: white;
-background-color: var(--color-contrast);
-opacity: 1;
- }
- .plus:hover {
-	transition: ease-in-out 0.2s;
-  	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
- }
- .product-component div {
-  color: var(--color-contrast);
- }
+		border-radius: 50%;
+		fill: white;
+		background-color: var(--color-contrast);
+		opacity: 1;
+	}
+	.plus:hover {
+		transition: ease-in-out 0.2s;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+	}
+	.product-component div {
+		color: var(--color-contrast);
+	}
 </style>

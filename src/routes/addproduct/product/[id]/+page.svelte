@@ -29,7 +29,7 @@
 
 <main class="mx-auto max-w-2xl space-y-6 p-8">
 	<h1 class="text-3xl font-bold">{data.product.name}</h1>
-	<p class="text-gray-600">(Nutritional values are per 100 g)</p>
+	<p class="">(Nutritional values are per 100 g)</p>
 
 	<form method="POST" class="space-y-4">
 		<div class="flex items-center gap-2">
@@ -161,3 +161,12 @@
 		</button>
 	</form>
 </main>
+
+<style>
+	h1 {
+  color: var(--color-white);
+ }
+ main p {
+  color: var(--color-contrast);
+ }
+</style>

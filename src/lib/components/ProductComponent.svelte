@@ -6,20 +6,22 @@
 	export let id: number; // product ID
 	export let name: string;
 	export let quantity: number = 100;
-	export let energy: number = 0;
+	export let energy: number | undefined;
 	export let meal_type: string = 'breakfast'; // default or pass from parent
 
 	const dispatch = createEventDispatcher();
 
-	// When the user clicks anywhere on the container (except the +), navigate:
+	// When the user clicks anywhere on the container (except the +), navigate
 	function onContainerClick() {
 		goto(`/addproduct/product/${id}`);
 	}
 
-	// When the user clicks the “+” icon, dispatch an “add” event:
+	// When the user clicks on +
 	function onPlusClick(event: MouseEvent) {
 		event.stopPropagation();
-		dispatch('add', { id, name, quantity, energy, meal_type });
+		if(energy === undefined) {
+			dispatch('add', { id, name, quantity, energy, meal_type });
+		}
 	}
 </script>
 

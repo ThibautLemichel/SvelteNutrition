@@ -11,10 +11,12 @@
 	let debounceTimer: NodeJS.Timeout;
 
 	// History state (unchanged from previous)
-	const history = writable<
-		Array<{ product_id: number; name: string; added_at: string; meal_type: string }>
-	>([]);
-	const histError = writable<string | null>(null);
+	const history = writable<Array<{
+		product_id: number;
+		name: string;
+		meal_type: string;
+	}>>([]);
+	const histError = writable<string>('');
 
 	const currentMealType = writable<'breakfast' | 'lunch' | 'dinner' | 'snack'>('breakfast');
 
@@ -137,7 +139,7 @@
 
 	<section class="mt-8">
 		<h2 class="mb-4 text-xl font-semibold">Recent History</h2>
-		{#if histError}
+		{#if $histError !== ''}
 			<p class="text-red-500">{$histError}</p>
 		{:else if $history.length === 0}
 			<p class="text-gray-500">You have not added any products yet.</p>

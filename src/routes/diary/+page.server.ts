@@ -1,5 +1,5 @@
 import type { PageServerLoad, Actions } from './$types';
-import { redirect, fail, json } from '@sveltejs/kit';
+import { redirect, fail } from '@sveltejs/kit';
 import { pool } from '$lib/server/db';
 
 export const load: PageServerLoad = async ({ cookies }) => {
@@ -83,6 +83,6 @@ export const actions: Actions = {
 
 		await pool.query('DELETE FROM diary_entries WHERE id = $1', [entryId]);
 
-		return json({ success: true, deletedId: entryId });
+		return { success: true, deletedId: entryId };
 	}
 };

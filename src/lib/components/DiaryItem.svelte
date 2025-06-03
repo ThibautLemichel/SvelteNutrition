@@ -12,10 +12,10 @@
 		<div class="entry-quantity">{quantity} {metric}</div>
 		<div class="entry-energy">{Math.round(energy)} kcal</div>
 	</div>
-	<form method="POST">
-		<input type="hidden" name="deleteEntry" value={entryId} />
-		<button type="submit" name="delete" class="delete-btn">×</button>
-	</form>
+	<form method="POST" action="?/delete">
+    <input type="hidden" name="deleteEntry" value={entryId} />
+    <button type="submit" class="delete-btn">×</button>
+  </form>
 </div>
 
 <style>

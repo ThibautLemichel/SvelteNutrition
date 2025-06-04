@@ -31,7 +31,7 @@
 	<h1 class="text-3xl font-bold">{data.product.name}</h1>
 	<p class="">(Nutritional values are per 100 g)</p>
 
-	<form method="POST" class="space-y-4">
+	<form method="POST" class="form space-y-4">
 		<div class="flex items-center gap-2">
 			<label for="quantity" class="font-medium">Quantity (g):</label>
 			<input
@@ -68,19 +68,19 @@
 		</div>
 
 		<section class="grid grid-cols-2 gap-4">
-			<div class="rounded bg-gray-100 p-4">
+			<div class="cal rounded bg-gray-100 p-4">
 				<span class="font-bold">Calories</span>
 				<div class="text-xl">{Math.round(scale(data.product.calories, quantity))} kcal</div>
 			</div>
-			<div class="rounded bg-gray-100 p-4">
+			<div class="prot rounded bg-gray-100 p-4">
 				<span class="font-bold">Proteins</span>
 				<div class="text-xl">{scale(data.product.protein, quantity).toFixed(1)} g</div>
 			</div>
-			<div class="rounded bg-gray-100 p-4">
+			<div class="fat rounded bg-gray-100 p-4">
 				<span class="font-bold">Fats</span>
 				<div class="text-xl">{scale(data.product.fat, quantity).toFixed(1)} g</div>
 			</div>
-			<div class="rounded bg-gray-100 p-4">
+			<div class="carb rounded bg-gray-100 p-4">
 				<span class="font-bold">Carbohydrates</span>
 				<div class="text-xl">{scale(data.product.carbohydrate, quantity).toFixed(1)} g</div>
 			</div>
@@ -90,7 +90,7 @@
 			<h2 class="mb-2 text-2xl font-semibold">Nutrition Details</h2>
 			<table class="w-full table-auto border-collapse">
 				<thead>
-					<tr class="bg-gray-200">
+					<tr class="bg-gray-200 text-black">
 						<th class="p-2 text-left">Nutrient</th>
 						<th class="p-2">Per 100 g</th>
 						<th class="p-2">Per {quantity} g</th>
@@ -156,17 +156,48 @@
 			</table>
 		</section>
 
-		<button type="submit" class="mt-4 rounded bg-green-600 px-6 py-2 text-white hover:bg-green-700">
-			Add to Diary
-		</button>
+		<button type="submit" class="mt-4 w-full px-6 py-2 text-white"> Add to Diary </button>
 	</form>
 </main>
 
 <style>
 	h1 {
-  color: var(--color-white);
- }
- main p {
-  color: var(--color-contrast);
- }
+		color: var(--color-white);
+	}
+	main p {
+		color: var(--color-contrast);
+	}
+	.form {
+		background-color: var(--color-background);
+		border-radius: 8px;
+		padding: 2rem;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	}
+	.form div {
+		color: var(--color-white);
+	}
+	.form section {
+		color: var(--color-white);
+		padding: 1rem;
+		border-radius: 8px;
+	}
+	.form section div {
+		color: var(--color-black);
+		padding: 1rem;
+		border-radius: 8px;
+	}
+	select,
+	input {
+		border: 2px solid transparent;
+		background-image:
+			linear-gradient(var(--color-background), var(--color-background)), var(--gradient-boost);
+		background-origin: border-box;
+		background-clip: padding-box, border-box;
+	}
+	button {
+		color: var(--color-white);
+		border-radius: 8px;
+		cursor: pointer;
+		background: var(--gradient-invert);
+	}
 </style>

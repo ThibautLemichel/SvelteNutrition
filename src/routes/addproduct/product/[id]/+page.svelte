@@ -155,8 +155,9 @@
 				</tbody>
 			</table>
 		</section>
-
-		<button type="submit" class="mt-4 w-full px-6 py-2 text-white"> Add to Diary </button>
+		<div class="buttonContainer">
+			<button type="submit" class="w-full px-6 py-2 font-bold"> Add to Diary </button>
+		</div>
 	</form>
 </main>
 
@@ -198,6 +199,16 @@
 		color: var(--color-white);
 		border-radius: 8px;
 		cursor: pointer;
-		background: var(--gradient-invert);
+		background-color: var(--color-background2);
+		transition: background-color 0.2s ease;
+	}
+	.buttonContainer {
+		background-image: var(--gradient);
+		border-radius: 0.5rem;
+		padding: 2px;
+	}
+	button:hover {
+		background-color: var(--color-gradient);
+		color: var(--color-background2);
 	}
 </style>

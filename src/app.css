@@ -1,1 +1,83 @@
 @import 'tailwindcss';
+
+:root {
+	/* Corlors */
+	--color-green: #058142;
+	--color-yellow: #e3b505;
+	--color-red: #ff0022;
+	--color-darker-red: #bb2f41;
+	--color-black: #1c1c1c;
+	--color-white: #ffffff;
+	--color-blue: #3490e4;
+	--color-background: #2d2d2d;
+	--color-background2: #232323;
+	--color-grey: #bcbfc0;
+	--color-bad: #ff6a73;
+	--color-good: #35aa6e;
+	--color-contrast: #d9d9d9;
+	--color-orange: #ff9675;
+	--color-purple: #9363ff;
+	--color-light-red: #ff3e57;
+	--color-light-grey: #696f8c;
+	--color-disable-2: #616161;
+	--color-disable-1: #928b8b;
+	--color-dark-grey: #353535;
+	--color-case-bank: #d9d9d9;
+	--color-case-bus: #058142;
+	--color-case-event: #ff7600;
+	--color-case-intersection: #e3b505;
+	--color-case-metro: #058142;
+	--color-case-monument: #3a2362;
+	--color-case-police: #3490e4;
+	--color-case-start: #ffffff;
+
+	/* Gradients */
+	--gradient: linear-gradient(to right, #ffc88a, #cd7aa3);
+	--gradient-invert: linear-gradient(to left, #ffc88a, #cd7aa3);
+	--gradient-rotate: linear-gradient(to bottom, #ffc88a, #cd7aa3);
+	--gradient-boost: linear-gradient(#af8260, #e4c59e);
+	--gradient-slash: linear-gradient(rgb(104, 183, 188), rgb(249, 214, 184));
+	--gradient-black-white: linear-gradient(45deg, rgba(45, 45, 45, 1) 0%, rgba(46, 46, 46, 1) 100%);
+	--gradient-pink-black: linear-gradient(to left, #ffc88a00 0%, #ffc88a 50%, #cd7aa3 100%);
+	--gradient-blue: linear-gradient(200deg, #3b4a93 0.7%, #3b4a93 62.42%, #293570 100%);
+	--gradient-bg-ion-content: linear-gradient(to top, #2d2d2d 50%, #232323 75%);
+	--gradient-back-to-back-2: linear-gradient(90deg, #232323 0%, #282828 30%, #2d2d2d 100%);
+}
+
+body {
+	background-color: var(--color-background2);
+}
+
+.carb {
+	background-color: var(--color-orange);
+}
+.prot {
+	background-color: var(--color-blue);
+}
+.cal {
+	background-color: var(--color-purple);
+}
+.fat {
+	background-color: var(--color-light-red);
+}
+.line {
+	position: relative;
+}
+.line::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url('/line/Line_1.svg'), url('/line/Line_2.svg');
+	background-repeat: no-repeat, no-repeat;
+	background-position:
+		bottom left,
+		right;
+	background-size:
+		100% auto,
+		100% auto;
+	opacity: 0.5;
+	pointer-events: none;
+}

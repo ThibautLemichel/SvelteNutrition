@@ -69,31 +69,30 @@
 		<div>
 			<h2 class="text-xl font-semibold">Nutritional Summary</h2>
 			<div class="mt-2 flex space-x-6">
-				<div class="rounded bg-gray-100 p-4">
+				<div class="cal rounded p-4">
 					<span class="font-bold">Calories</span>
 					<div class="text-xl">{Math.round(totals.calories)} kcal</div>
 				</div>
-				<div class="rounded bg-gray-100 p-4">
+				<div class="prot rounded p-4">
 					<span class="font-bold">Proteins</span>
 					<div class="text-xl">{formatNumber(totals.protein)} g</div>
 				</div>
-				<div class="rounded bg-gray-100 p-4">
+				<div class="carb rounded p-4">
 					<span class="font-bold">Carbohydrates</span>
 					<div class="text-xl">{formatNumber(totals.carbohydrate)} g</div>
 				</div>
-				<div class="rounded bg-gray-100 p-4">
+				<div class="fat rounded p-4">
 					<span class="font-bold">Fats</span>
 					<div class="text-xl">{formatNumber(totals.fat)} g</div>
 				</div>
 			</div>
 		</div>
 		<div class="flex items-end justify-end">
-			<button
-				class="rounded bg-blue-600 px-6 py-2 text-white hover:bg-blue-700"
-				on:click={() => (window.location.href = '/addproduct')}
-			>
-				Add Food
-			</button>
+			<div class="buttonContainer">
+				<button class="rounded px-6 py-2" on:click={() => (window.location.href = '/addproduct')}>
+					Add Food
+				</button>
+			</div>
 		</div>
 	</section>
 
@@ -113,3 +112,36 @@
 		{/if}
 	{/each}
 </main>
+
+<style>
+	h1 {
+		color: var(--color-white);
+	}
+	section {
+		background-color: var(--color-background);
+		border-radius: 0.5rem;
+		padding: 1.5rem;
+	}
+	section h2 {
+		color: var(--color-white);
+	}
+	.buttonContainer {
+		background-image: var(--gradient);
+		border-radius: 0.375rem;
+		padding: 2px;
+	}
+	button {
+		background-color: var(--color-background2);
+		border-color: var(--gradient);
+		color: var(--color-white);
+		border: none;
+		border-radius: 0.34rem;
+		padding: 0.5rem 1rem;
+		cursor: pointer;
+		transition: background-color 0.2s ease;
+	}
+	button:hover {
+		background-color: var(--color-gradient);
+		color: var(--color-background2);
+	}
+</style>

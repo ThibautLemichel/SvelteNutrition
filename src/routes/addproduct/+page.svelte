@@ -1,4 +1,3 @@
-<!-- src/routes/addproduct/+page.svelte -->
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
 	import { writable } from 'svelte/store';
@@ -95,24 +94,26 @@
 	}
 </script>
 
-<main class="mx-auto max-w-3xl space-y-6 p-8">
+<main class="mx-auto max-w-3xl space-y-6 p-8 bg-background">
 	<h1 class="mb-4 text-2xl font-bold">Add a product :</h1>
 
-	<div class="mb-4">
-		<label for="meal" class="mb-1 block font-medium">Meal type :</label>
+	<div class="mealTypeContainer mb-4 p-4 flex items-center justify-between">
+		<label for="meal" class="mb-1 block font-bold text-xl">Meal type :</label>
+		<div class="mealTypeWrapper">
 		<select
 			id="meal"
 			bind:value={$currentMealType}
-			class="rounded border px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+			class="border px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
 		>
 			<option value="breakfast">Breakfast</option>
 			<option value="lunch">Lunch</option>
 			<option value="dinner">Dinner</option>
 			<option value="snack">Snack</option>
 		</select>
+		</div>
 	</div>
 
-	<div class="relative mb-4">
+	<div class="searchBar relative mb-4">
 		<input
 			type="text"
 			placeholder="Search for a product..."
@@ -122,7 +123,7 @@
 		/>
 
 		{#if $results.length}
-			<div class="absolute z-10 mt-1 w-full overflow-auto rounded border bg-white shadow-lg">
+			<div class="top-12">
 				{#each $results as item}
 					<ProductComponent
 						id={item.id}
@@ -137,7 +138,7 @@
 		{/if}
 	</div>
 
-	<section class="mt-8">
+	<section class="historyContainer mt-8">
 		<h2 class="mb-4 text-xl font-semibold">Recent History</h2>
 		{#if $histError !== ''}
 			<p class="text-red-500">{$histError}</p>
@@ -149,7 +150,7 @@
 					<ProductComponent
 						id={entry.product_id}
 						name={entry.name}
-						energy={0}
+						energy={undefined}
 						quantity={100}
 						meal_type={entry.meal_type}
 						on:add={addQuickly}
@@ -159,3 +160,43 @@
 		{/if}
 	</section>
 </main>
+
+<style>
+	main{
+		background-color: var(--color-background2);
+	}
+	h1 {
+		color: var(--color-white);
+	}
+	.mealTypeContainer {
+		background-color: var(--color-grey);
+		border-radius: 0.5rem;
+	}
+	.mealTypeContainer label {
+  	color: var(--color-background2);
+	}
+	.mealTypeContainer select {
+  	color: var(--color-white);
+  	background-color: var(--color-background2);
+	border: none;
+	border-radius: 8px;
+ 	}
+	.mealTypeWrapper {
+ 		display: inline-block;       
+  		padding: 2px;                
+  		border-radius: 10px;        
+  		background: var(--gradient);
+ }
+ .historyContainer {
+  background-color: var(--color-grey);
+  padding: 1rem;
+  border-radius: 0.5rem;
+ }
+
+ .searchBar {
+	background-color: var(--color-grey);
+	  padding: 1rem;
+  border-radius: 0.5rem;
+ }
+
+</style>

@@ -1,3 +1,9 @@
+<script>
+	import Header from '$lib/components/Header.svelte';
+</script>
+
+<Header />
+
 <form method="POST" class="mx-auto mt-10 flex max-w-sm flex-col gap-4">
 	<h2 class="text-2xl font-semibold">Login</h2>
 	<input name="email" type="email" placeholder="Email" required class="rounded border p-2" />

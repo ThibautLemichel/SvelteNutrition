@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import Header from '$lib/components/Header.svelte';
 	import { onMount } from 'svelte';
 
 	export let data: {
@@ -44,6 +45,8 @@
 		}
 	});
 </script>
+
+<Header />
 
 <main class="mx-auto max-w-lg space-y-6 p-8">
 	<h1 class="text-3xl font-bold">Edit Profile</h1>

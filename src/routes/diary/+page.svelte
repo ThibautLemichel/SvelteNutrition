@@ -1,5 +1,6 @@
 <script lang="ts">
 	import DiaryItem from '$lib/components/DiaryItem.svelte';
+	import Header from '$lib/components/Header.svelte';
 	import MainDiaryComponent from '$lib/components/MainDiaryComponent.svelte';
 
 	export let data: {
@@ -61,6 +62,8 @@
 		return new Date(dt).toLocaleString();
 	}
 </script>
+
+<Header />
 
 <main class="mx-auto max-w-4xl space-y-8 p-8">
 	<h1 class="text-3xl font-bold">My Diary for {data.date}</h1>

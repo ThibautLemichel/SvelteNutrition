@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import Chart from 'chart.js/auto';
 	import { color } from 'chart.js/helpers';
+	import Header from '$lib/components/Header.svelte';
 
 	export let data: {
 		userName: string;
@@ -123,6 +124,8 @@
 	}
 </script>
 
+<Header />
+
 <main class="mx-auto max-w-4xl space-y-6 p-8">
 	<h1 class="text-3xl font-bold">Welcome, {data.userName}!</h1>
 
@@ -219,10 +222,6 @@
 <style>
 	canvas {
 		max-height: 300px;
-	}
-
-	.relative {
-		position: relative;
 	}
 	h1,
 	h2 {

@@ -30,6 +30,7 @@
 	--color-case-monument: #3a2362;
 	--color-case-police: #3490e4;
 	--color-case-start: #ffffff;
+	--color-beige: rgb(249, 214, 184);
 
 	/* Gradients */
 	--gradient: linear-gradient(to right, #ffc88a, #cd7aa3);

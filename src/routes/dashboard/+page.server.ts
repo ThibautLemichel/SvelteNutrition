@@ -3,11 +3,11 @@ import { redirect } from '@sveltejs/kit';
 import { pool } from '$lib/server/db';
 
 export const load: PageServerLoad = async ({ cookies }) => {
-	// 1) Ensure user is authenticated
+	// Auth
 	const session = cookies.get('session');
 	if (!session) throw redirect(303, '/login');
 
-	// 2) Fetch user info and goals
+	// Fetch user info and goals
 	const userRes = await pool.query(
 		`SELECT
        id,
@@ -32,18 +32,18 @@ export const load: PageServerLoad = async ({ cookies }) => {
 	const user = userRes.rows[0];
 	const userId: number = user.id;
 
-	// 3) Find today's diary (if it exists)
+	// Find today's diary (if it exists)
 	const today = new Date().toISOString().slice(0, 10);
 	const diaryRes = await pool.query(
 		'SELECT id FROM diaries WHERE user_id = $1 AND entry_date = $2',
 		[userId, today]
 	);
 	let diaryId: number | null = null;
-	if (diaryRes.rowCount > 0) {
+	if ((diaryRes.rowCount ?? 0) > 0) {
 		diaryId = diaryRes.rows[0].id;
 	}
 
-	// 4) Sum calories by meal_type for the doughnut (unchanged)
+	// Sum calories by meal_type for the doughnut
 	const mealCalories = {
 		breakfast: 0,
 		lunch: 0,
@@ -71,8 +71,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
 		}
 	}
 
-	// 5) Sum each nutrient for today's diary
-	// If no diary, all sums remain zero
+	// Sum each nutrient for today's diary
 	const nutrientSums = {
 		protein: 0,
 		fat: 0,

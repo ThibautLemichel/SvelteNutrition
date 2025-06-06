@@ -1,13 +1,40 @@
 <script lang="ts">
-	import { onDestroy } from 'svelte';
-	let iconSrc = '/ChuckNorris.png';
+	import { onDestroy, onMount } from 'svelte';
+	const DAD_ICON = '/DadJoke.png';
+	const CHUCK_ICON = '/ChuckNorris.png';
+
+	let iconSrc = '';
+	let visible = false;
+
 	let clicked = false;
 	let joke: string | null = null;
 	let exploded = false;
 	let removed = false;
+	let iconType: 'chuck' | 'dad' = 'chuck';
 
 	let explodeTimeout: ReturnType<typeof setTimeout>;
 	let removeTimeout: ReturnType<typeof setTimeout>;
+	let intervalId: ReturnType<typeof setInterval>;
+
+	// Show a new icon if none is visible
+	function showIcon() {
+		if (!visible) {
+			// Choose random type
+			if (Math.random() < 0.5) {
+				iconType = 'chuck';
+				iconSrc = CHUCK_ICON;
+			} else {
+				iconType = 'dad';
+				iconSrc = DAD_ICON;
+			}
+			// Reset state
+			visible = true;
+			clicked = false;
+			joke = null;
+			exploded = false;
+			removed = false;
+		}
+	}
 
 	async function handleClick() {
 		if (clicked) return;
@@ -16,9 +43,17 @@
 
 		// Fetch API
 		try {
-			const res = await fetch('https://api.chucknorris.io/jokes/random');
-			const data = await res.json();
-			joke = data.value;
+			if (iconType === 'chuck') {
+				const res = await fetch('https://api.chucknorris.io/jokes/random');
+				const data = await res.json();
+				joke = data.value;
+			} else {
+				const res = await fetch('https://icanhazdadjoke.com/', {
+					headers: { Accept: 'application/json' }
+				});
+				const data = await res.json();
+				joke = data.joke;
+			}
 		} catch (err) {
 			joke = "Oops, couldn't fetch a joke.";
 		}
@@ -29,13 +64,20 @@
 			// After explosion animation (~800ms), remove component
 			removeTimeout = setTimeout(() => {
 				removed = true;
+				visible = false;
 			}, 800);
 		}, 10000);
 	}
 
+	onMount(() => {
+		showIcon();
+		intervalId = setInterval(showIcon, 60000);
+	});
+
 	onDestroy(() => {
 		clearTimeout(explodeTimeout);
 		clearTimeout(removeTimeout);
+		clearInterval(intervalId);
 	});
 </script>
 
@@ -48,7 +90,7 @@
 		>
 			<img
 				src={iconSrc}
-				alt="Chuck Norris"
+				alt="Joke Icon"
 				class="icon w-16 {clicked ? 'clicked' : ''} {exploded ? 'explode' : ''}"
 				on:click={handleClick}
 			/>

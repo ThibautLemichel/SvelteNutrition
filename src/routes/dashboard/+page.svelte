@@ -3,6 +3,7 @@
 	import Chart from 'chart.js/auto';
 	import { color } from 'chart.js/helpers';
 	import Header from '$lib/components/Header.svelte';
+	import ChuckNorrisIcon from '$lib/components/ChuckNorrisIcon.svelte';
 
 	export let data: {
 		userName: string;
@@ -126,7 +127,10 @@
 
 <Header />
 
-<main class="mx-auto max-w-4xl space-y-6 p-8">
+<main class="relative mx-auto max-w-4xl space-y-6 p-8">
+	<div class="absolute top-50 right-4">
+		<ChuckNorrisIcon />
+	</div>
 	<h1 class="text-3xl font-bold">Welcome, {data.userName}!</h1>
 
 	<section class="background rounded-lg p-6 shadow-md">

@@ -19,20 +19,21 @@ export const actions: Actions = {
 		const productIdRaw = form.get('product_id');
 		const metric = form.get('metric');
 		const quantityRaw = form.get('quantity');
+		const meal_type = form.get('meal_type');
 
 		if (
 			typeof productIdRaw !== 'string' ||
 			typeof metric !== 'string' ||
 			typeof quantityRaw !== 'string'
 		) {
-			return fail(400, { message: 'Données invalides' });
+			return fail(400, { message: 'Invalid Data' });
 		}
 
 		const productId = parseInt(productIdRaw, 10);
 		const quantity = parseFloat(quantityRaw);
 
 		if (isNaN(productId) || isNaN(quantity)) {
-			return fail(400, { message: 'ID produit ou quantité non valide' });
+			return fail(400, { message: 'Product ID or Quantity invalid' });
 		}
 
 		// create a new diary or get existing one
@@ -56,9 +57,9 @@ export const actions: Actions = {
 		// Insert the product into diary_entries
 		await pool.query(
 			`INSERT INTO diary_entries
-         (diary_id, product_id, metric, quantity)
-       VALUES ($1, $2, $3, $4)`,
-			[diaryId, productId, metric, quantity]
+         (diary_id, product_id, metric, quantity, meal_type)
+       VALUES ($1, $2, $3, $4, $5)`,
+			[diaryId, productId, metric, quantity, meal_type]
 		);
 
 		// Insert into user_product_history

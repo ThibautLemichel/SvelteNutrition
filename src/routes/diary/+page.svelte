@@ -68,10 +68,10 @@
 <main class="mx-auto max-w-4xl space-y-8 p-8">
 	<h1 class="text-3xl font-bold">My Diary for {data.date}</h1>
 
-	<section class="grid grid-cols-2 gap-6">
+	<section class="grid grid-cols-1 gap-6 md:grid-cols-2">
 		<div>
 			<h2 class="text-xl font-semibold">Nutritional Summary</h2>
-			<div class="mt-2 flex space-x-6">
+			<div class="mt-2 flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-6">
 				<div class="cal rounded p-4">
 					<span class="font-bold">Calories</span>
 					<div class="text-xl">{Math.round(totals.calories)} kcal</div>
@@ -90,7 +90,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="flex items-end justify-end">
+		<div class="mt-4 flex items-end justify-end md:mt-0">
 			<div class="buttonContainer">
 				<button class="rounded px-6 py-2" on:click={() => (window.location.href = '/addproduct')}>
 					Add Food

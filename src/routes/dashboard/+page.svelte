@@ -147,7 +147,7 @@
 			<span class="block font-bold">Lunch</span>
 			<span class="text-xl">{Math.round(data.mealCalories.lunch)} kcal</span>
 		</div>
-		<div class="prot line p-4 text-center">
+		<div class="prot line rounded p-4 text-center">
 			<span class="block font-bold">Dinner</span>
 			<span class="text-xl">{Math.round(data.mealCalories.dinner)} kcal</span>
 		</div>

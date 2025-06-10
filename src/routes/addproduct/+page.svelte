@@ -2,6 +2,7 @@
 	import { onDestroy, onMount } from 'svelte';
 	import { writable } from 'svelte/store';
 	import ProductComponent from '$lib/components/ProductComponent.svelte';
+	import Header from '$lib/components/Header.svelte';
 
 	// Search state
 	const query = writable('');
@@ -102,6 +103,7 @@
 	}
 </script>
 
+<Header />
 <main class="bg-background mx-auto max-w-3xl space-y-6 p-8">
 	<h1 class="mb-4 text-2xl font-bold">Add a product :</h1>
 

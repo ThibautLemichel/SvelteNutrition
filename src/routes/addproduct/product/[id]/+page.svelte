@@ -20,7 +20,7 @@
 	// Form fields
 	let quantity = 100; // default in grams
 	let metric = 'g';
-	let mealType: 'breakfast' | 'lunch' | 'dinner' | 'snack' = 'breakfast';
+	let mealType: 'breakfast' | 'lunch' | 'dinner' | 'snack';
 
 	function scale(per100: number, qty: number) {
 		return (per100 * qty) / 100;

@@ -2,6 +2,7 @@
 	import { onDestroy, onMount } from 'svelte';
 	import { writable } from 'svelte/store';
 	import ProductComponent from '$lib/components/ProductComponent.svelte';
+	import Header from '$lib/components/Header.svelte';
 
 	// Search state
 	const query = writable('');
@@ -10,11 +11,13 @@
 	let debounceTimer: NodeJS.Timeout;
 
 	// History state (unchanged from previous)
-	const history = writable<Array<{
-		product_id: number;
-		name: string;
-		meal_type: string;
-	}>>([]);
+	const history = writable<
+		Array<{
+			product_id: number;
+			name: string;
+			meal_type: string;
+		}>
+	>([]);
 	const histError = writable<string>('');
 
 	const currentMealType = writable<'breakfast' | 'lunch' | 'dinner' | 'snack'>('breakfast');
@@ -61,15 +64,21 @@
 
 	// Called when ProductComponent dispatches “add”
 	async function addQuickly(event: CustomEvent<any>) {
-		const { id, quantity, meal_type } = event.detail;
+		const { id, quantity } = event.detail;
 
 		const formData = new FormData();
 		formData.set('product_id', String(id));
 		formData.set('metric', 'g');
 		formData.set('quantity', String(quantity));
-		formData.set('meal_type', meal_type);
+		formData.set('meal_type', $currentMealType);
 
 		try {
+			console.log(
+				'Adding product:',
+				formData.get('meal_type'),
+				formData.get('product_id'),
+				formData.get('quantity')
+			);
 			const res = await fetch('/addproduct', {
 				method: 'POST',
 				body: formData
@@ -81,7 +90,7 @@
 					history.set(await hist.json());
 				}
 			} else {
-				console.error('Échec ajout:', res.status);
+				console.error('Add product fails:', res.status);
 			}
 		} catch (err) {
 			console.error(err);
@@ -94,22 +103,23 @@
 	}
 </script>
 
-<main class="mx-auto max-w-3xl space-y-6 p-8 bg-background">
+<Header />
+<main class="bg-background mx-auto max-w-3xl space-y-6 p-8">
 	<h1 class="mb-4 text-2xl font-bold">Add a product :</h1>
 
-	<div class="mealTypeContainer mb-4 p-4 flex items-center justify-between">
-		<label for="meal" class="mb-1 block font-bold text-xl">Meal type :</label>
+	<div class="mealTypeContainer mb-4 flex items-center justify-between p-4">
+		<label for="meal" class="mb-1 block text-xl font-bold">Meal type :</label>
 		<div class="mealTypeWrapper">
-		<select
-			id="meal"
-			bind:value={$currentMealType}
-			class="border px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-		>
-			<option value="breakfast">Breakfast</option>
-			<option value="lunch">Lunch</option>
-			<option value="dinner">Dinner</option>
-			<option value="snack">Snack</option>
-		</select>
+			<select
+				id="meal"
+				bind:value={$currentMealType}
+				class="border px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+			>
+				<option value="breakfast">Breakfast</option>
+				<option value="lunch">Lunch</option>
+				<option value="dinner">Dinner</option>
+				<option value="snack">Snack</option>
+			</select>
 		</div>
 	</div>
 
@@ -162,7 +172,7 @@
 </main>
 
 <style>
-	main{
+	main {
 		background-color: var(--color-background2);
 	}
 	h1 {
@@ -173,30 +183,29 @@
 		border-radius: 0.5rem;
 	}
 	.mealTypeContainer label {
-  	color: var(--color-background2);
+		color: var(--color-background2);
 	}
 	.mealTypeContainer select {
-  	color: var(--color-white);
-  	background-color: var(--color-background2);
-	border: none;
-	border-radius: 8px;
- 	}
+		color: var(--color-white);
+		background-color: var(--color-background2);
+		border: none;
+		border-radius: 8px;
+	}
 	.mealTypeWrapper {
- 		display: inline-block;       
-  		padding: 2px;                
-  		border-radius: 10px;        
-  		background: var(--gradient);
- }
- .historyContainer {
-  background-color: var(--color-grey);
-  padding: 1rem;
-  border-radius: 0.5rem;
- }
+		display: inline-block;
+		padding: 2px;
+		border-radius: 10px;
+		background: var(--gradient);
+	}
+	.historyContainer {
+		background-color: var(--color-grey);
+		padding: 1rem;
+		border-radius: 0.5rem;
+	}
 
- .searchBar {
-	background-color: var(--color-grey);
-	  padding: 1rem;
-  border-radius: 0.5rem;
- }
-
+	.searchBar {
+		background-color: var(--color-grey);
+		padding: 1rem;
+		border-radius: 0.5rem;
+	}
 </style>

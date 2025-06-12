@@ -188,9 +188,9 @@
 					</span>
 				</div>
 
-				<div class="h-4 w-full overflow-hidden rounded bg-gray-200">
+				<div class="h-4 w-full overflow-hidden rounded-full bg-gray-200">
 					<div
-						class="progress-bar h-full"
+						class="progress-bar h-full rounded-full"
 						style="width: {percent(nutrient.intake, nutrient.goal)}%;"
 					></div>
 				</div>

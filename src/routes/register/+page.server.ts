@@ -3,6 +3,7 @@ import { pool } from '$lib/server/db';
 import bcrypt from 'bcrypt';
 import { fail, redirect } from '@sveltejs/kit';
 import crypto from 'crypto';
+import { defaultNutritionalGoals } from '$lib/const/DefaultMacros';
 
 export const actions: Actions = {
 	default: async ({ request, cookies }) => {
@@ -17,8 +18,23 @@ export const actions: Actions = {
 
 		const hashed = await bcrypt.hash(password, 10);
 		const insert = await pool.query(
-			'INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id',
-			[name, email, hashed]
+			'INSERT INTO users (name, email, password, calories_goal, protein_goal, fat_goal, carb_goal, sugar_goal, cholesterol_goal, sodium_goal, potassium_goal, calcium_goal, magnesium_goal, zinc_goal) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING id',
+			[
+				name,
+				email,
+				hashed,
+				defaultNutritionalGoals.caloriesGoal,
+				defaultNutritionalGoals.proteinGoal,
+				defaultNutritionalGoals.fatGoal,
+				defaultNutritionalGoals.carbGoal,
+				defaultNutritionalGoals.sugarGoal,
+				defaultNutritionalGoals.cholesterolGoal,
+				defaultNutritionalGoals.sodiumGoal,
+				defaultNutritionalGoals.potassiumGoal,
+				defaultNutritionalGoals.calciumGoal,
+				defaultNutritionalGoals.magnesiumGoal,
+				defaultNutritionalGoals.zincGoal
+			]
 		);
 		const userId = insert.rows[0].id;
 

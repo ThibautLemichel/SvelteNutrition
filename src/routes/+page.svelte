@@ -35,7 +35,7 @@
 			</a>
 			<a
 				href="/login"
-				class="signupButton login rounded-md px-6 py-3 text-[var(--color-contrast)] transition hover:bg-blue-500"
+				class="signupButton login rounded-md px-6 py-3 text-[var(--color-contrast)] transition"
 			>
 				Log In
 			</a>
@@ -175,7 +175,7 @@
 
 <style>
 	.login {
-		border: 1px solid transparent;
+		border: 2px solid transparent;
 		background-origin: border-box;
 		background-clip: padding-box, border-box;
 		background-image:

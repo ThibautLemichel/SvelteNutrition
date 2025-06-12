@@ -3,20 +3,18 @@
 </script>
 
 <Header />
-<div
-	class="relative min-h-screen overflow-hidden bg-gradient-to-b from-[var(--color-orange)] to-[var(--color-beige)]"
->
-	<div class="mx-auto h-90 w-150 bg-[url('/family.png')] bg-cover bg-center"></div>
+
+<div class="flex min-h-screen items-center justify-center bg-[var(--color-background2)] px-4">
 	<form
 		method="POST"
-		class="colorWhite relative mx-auto -mt-5 flex max-w-sm flex-col gap-4 rounded-lg bg-[var(--color-background)] p-6 shadow-lg"
+		class="colorWhite mx-auto flex w-full max-w-md flex-col gap-4 rounded-lg bg-[var(--color-background)] p-6 shadow-lg"
 	>
 		<h2 class="text-2xl font-semibold">Login</h2>
 		<input name="email" type="email" placeholder="Email" required class="rounded border p-2" />
 		<input
 			name="password"
 			type="password"
-			placeholder="Password"
+			placeholder="••••••••"
 			required
 			class="rounded border p-2"
 		/>

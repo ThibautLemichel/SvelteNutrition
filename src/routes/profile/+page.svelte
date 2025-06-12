@@ -258,7 +258,7 @@
 
 		<button
 			type="submit"
-			class="mt-4 w-full rounded border-2 border-[var(--color-orange)] bg-[var(--color-background)] px-6 py-2 text-white transition duration-300 hover:bg-[var(--color-orange)] hover:shadow-lg"
+			class="mt-4 w-full cursor-pointer rounded border-2 border-[var(--color-orange)] bg-[var(--color-background)] px-6 py-2 text-white transition duration-300 hover:bg-[var(--color-orange)] hover:shadow-lg"
 		>
 			Save Changes
 		</button>

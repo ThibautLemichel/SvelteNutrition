@@ -202,19 +202,19 @@
 		<h2 class="text-2xl font-semibold">Quick Actions</h2>
 		<div class="flex space-x-4">
 			<button
-				class="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+				class="cursor-pointer rounded bg-[var(--color-blue)] px-4 py-2 text-white hover:bg-blue-700"
 				on:click={() => (window.location.href = '/addproduct')}
 			>
 				Add New Food
 			</button>
 			<button
-				class="rounded bg-green-600 px-4 py-2 text-white hover:bg-green-700"
+				class="cursor-pointer rounded bg-[var(--color-orange)] px-4 py-2 text-white hover:bg-orange-600"
 				on:click={() => (window.location.href = '/diary')}
 			>
 				View Full Diary
 			</button>
 			<button
-				class="rounded bg-yellow-600 px-4 py-2 text-white hover:bg-yellow-700"
+				class="cursor-pointer rounded bg-[var(--color-yellow)] px-4 py-2 text-white hover:bg-yellow-600"
 				on:click={() => (window.location.href = '/profile')}
 			>
 				Edit Profile

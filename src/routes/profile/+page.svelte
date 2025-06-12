@@ -58,7 +58,6 @@
 	{/if}
 
 	<form method="POST" class="space-y-4">
-		<!-- Name -->
 		<div>
 			<label for="name" class="mb-1 block font-medium">Name</label>
 			<input
@@ -71,7 +70,6 @@
 			/>
 		</div>
 
-		<!-- Email -->
 		<div>
 			<label for="email" class="mb-1 block font-medium">Email</label>
 			<input
@@ -84,7 +82,6 @@
 			/>
 		</div>
 
-		<!-- Password -->
 		<div>
 			<label for="password" class="mb-1 block font-medium">
 				New Password (leave blank to keep current)
@@ -99,7 +96,6 @@
 			/>
 		</div>
 
-		<!-- Calories Goal -->
 		<div>
 			<label for="calories_goal" class="mb-1 block font-medium"> Daily Calories Goal </label>
 			<input
@@ -114,7 +110,6 @@
 			/>
 		</div>
 
-		<!-- Protein Goal -->
 		<div>
 			<label for="protein_goal" class="mb-1 block font-medium">Protein Goal (g)</label>
 			<input
@@ -129,7 +124,6 @@
 			/>
 		</div>
 
-		<!-- Fat Goal -->
 		<div>
 			<label for="fat_goal" class="mb-1 block font-medium">Fat Goal (g)</label>
 			<input
@@ -144,7 +138,6 @@
 			/>
 		</div>
 
-		<!-- Carbohydrate Goal -->
 		<div>
 			<label for="carb_goal" class="mb-1 block font-medium">Carbohydrate Goal (g)</label>
 			<input
@@ -159,7 +152,6 @@
 			/>
 		</div>
 
-		<!-- Sugar Goal -->
 		<div>
 			<label for="sugar_goal" class="mb-1 block font-medium">Sugar Goal (g)</label>
 			<input
@@ -174,7 +166,6 @@
 			/>
 		</div>
 
-		<!-- Cholesterol Goal -->
 		<div>
 			<label for="cholesterol_goal" class="mb-1 block font-medium">Cholesterol Goal (mg)</label>
 			<input
@@ -189,7 +180,6 @@
 			/>
 		</div>
 
-		<!-- Sodium Goal -->
 		<div>
 			<label for="sodium_goal" class="mb-1 block font-medium">Sodium Goal (mg)</label>
 			<input
@@ -204,7 +194,6 @@
 			/>
 		</div>
 
-		<!-- Potassium Goal -->
 		<div>
 			<label for="potassium_goal" class="mb-1 block font-medium">Potassium Goal (mg)</label>
 			<input
@@ -219,7 +208,6 @@
 			/>
 		</div>
 
-		<!-- Calcium Goal -->
 		<div>
 			<label for="calcium_goal" class="mb-1 block font-medium">Calcium Goal (mg)</label>
 			<input
@@ -234,7 +222,6 @@
 			/>
 		</div>
 
-		<!-- Magnesium Goal -->
 		<div>
 			<label for="magnesium_goal" class="mb-1 block font-medium">Magnesium Goal (mg)</label>
 			<input
@@ -249,7 +236,6 @@
 			/>
 		</div>
 
-		<!-- Zinc Goal -->
 		<div>
 			<label for="zinc_goal" class="mb-1 block font-medium">Zinc Goal (mg)</label>
 			<input
@@ -264,15 +250,16 @@
 			/>
 		</div>
 
-		<!-- Afficher les erreurs de validation le cas échéant -->
 		{#if $page.form?.message}
 			<div class="text-sm text-red-600">
 				{$page.form.message}
 			</div>
 		{/if}
 
-		<!-- Bouton de soumission -->
-		<button type="submit" class="mt-4 rounded bg-blue-600 px-6 py-2 text-white hover:bg-blue-700">
+		<button
+			type="submit"
+			class="mt-4 w-full rounded border-2 border-[var(--color-orange)] bg-[var(--color-background)] px-6 py-2 text-white transition duration-300 hover:bg-[var(--color-orange)] hover:shadow-lg"
+		>
 			Save Changes
 		</button>
 	</form>
